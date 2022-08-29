@@ -58,13 +58,23 @@ return (
         <div>
             <h1>Add a NEW Comic</h1>
         </div>
-        <div>
+        <div className='newForm'>
             <form onSubmit={handleComicSubmission}>
-                Superhero: <input type='text' onChange={handleChangeSuperhero}/><br/>
-                Comic Cover Art Link: <input type='text' onChange={handleChangeImg}/><br/>
-                Release Date: <input type='text' onChange={handleChangeReleaseDate}/><br/>
-                Author: <input type='text' onChange={handleChangeAuthor}/><br/>
-                Description: <input type='text' onChange={handleChangeDescription}/><br/>
+                <div className="inputElements">
+                    Superhero: <input className='inputNewForm' type='text' onChange={handleChangeSuperhero}/><br/>
+                </div>
+                <div className="inputElements">
+                    Comic Cover Art Link: <input className='inputNewForm' type='text' onChange={handleChangeImg}/><br/>
+                </div>
+                <div className="inputElements">
+                    Release Date: <input className='inputNewForm' type='text' onChange={handleChangeReleaseDate}/><br/>
+                </div>
+                <div className="inputElements">
+                    Author: <input className='inputNewForm' type='text' onChange={handleChangeAuthor}/><br/>
+                </div>
+                <div className="inputElements">
+                    Description: <input className='inputNewForm' type='text' onChange={handleChangeDescription}/><br/>
+                </div>
                 <input type='submit' value='Submit NEW Comic'/>
             </form>
         </div>
