@@ -15,7 +15,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3000/comics').then((response) => {
+        axios.get('https://ancient-badlands-39410.herokuapp.com/comics').then((response) => {
             setNewComic(response.data)
             console.log(response.data)
         })
