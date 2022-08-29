@@ -11,6 +11,53 @@
   margin-bottom: .3em;
 }
 
-img{
-  max-width: 150px;
+.createWrapper {
+  margin: 2em;
+}
+
+.parent {
+  background-image: url(https://wallpaperaccess.com/full/1225736.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: none;
+}
+
+.collection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-container {
+  margin-top: 2em;
+  height: 100vh;
+  display: flex;
+  flex-basis: auto;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+summary{
+  border-style: solid;
+  color: white;
+  margin: 2em;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  
+}
+h1{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: white
+}
+
+h3{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: white
+}
+
+p{
+  color: white;
+  font-family: 'Kdam Thmor Pro', sans-serif;
 }
