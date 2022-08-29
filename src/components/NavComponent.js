@@ -6,7 +6,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 const ComicNav = (props) => {
     const showNewForm = () => {
         props.setNewForm(!props.showNewForm)
-        props.setComics(!props.showComics)
+        props.setComics(false)
+    }
+    const showCollection = () => {
+        props.setNewForm(false)
+        props.setComics(true)
+
     }
 
 
@@ -17,7 +22,7 @@ const ComicNav = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Collections</Nav.Link>
+                        <Nav.Link href="#home" onClick={showCollection}>Collections</Nav.Link>
                         <Nav.Link href="#link" onClick={showNewForm}>Add New Comic</Nav.Link>
                         <NavDropdown title="Links" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Instagram</NavDropdown.Item>
