@@ -23,15 +23,14 @@ const Home = () => {
 
 
     return (
-        <div>
+        <div className="collection">
             {comic.map((comic) => {
                 return( 
-                    <Card style={{ width: '18rem' }}>
+                    <Card style={{ width: '18rem', margin: '1em' }}>
                     <Card.Img variant="top" src={comic.img} />
                     <Card.Body>
                       <Card.Title>{comic.superhero}</Card.Title>
                       <Card.Text>
-                   
                       </Card.Text>
                       <Button variant="primary">Show More</Button>
                     </Card.Body>

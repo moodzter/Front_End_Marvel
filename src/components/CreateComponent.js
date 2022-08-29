@@ -54,7 +54,7 @@ const handleComicSubmission = (event) => {
 
 //=====>Return Statement
 return (
-    <div>
+    <div className="createWrapper">
         <div>
             <h1>Add a NEW Comic</h1>
         </div>
