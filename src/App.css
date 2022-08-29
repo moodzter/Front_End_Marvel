@@ -10,3 +10,7 @@
   background-color: oldlace;
   margin-bottom: .3em;
 }
+
+img{
+  max-width: 150px;
+}
