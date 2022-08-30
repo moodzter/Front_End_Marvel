@@ -39,3 +39,25 @@
   flex-wrap: wrap;
   overflow-y: auto;
 }
+
+summary{
+  border-style: solid;
+  color: black;;
+  margin: 2em;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  
+}
+h1{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: black;
+}
+
+h3{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: black;
+}
+
+p{
+  color: black;;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+}

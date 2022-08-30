@@ -1,50 +1,62 @@
 import axios from 'axios'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Show from './ShowComponent'
 
 
-const Home = () => {
-    const [hero, setNewHero] = useState("")
-    const [img, setNewImg] = useState("")
-    const [releaseDate, setNewReleaseDate] = useState("")
-    const [description, setNewDescription] = useState("")
-    const [rating, setNewrating] = useState("")
-    const [comic, setNewComic] = useState([])
+const Home = (props) => {
+  const [hero, setNewHero] = useState("")
+  const [img, setNewImg] = useState("")
+  const [releaseDate, setNewReleaseDate] = useState("")
+  const [description, setNewDescription] = useState("")
+  const [rating, setNewrating] = useState("")
+  const [comic, setNewComic] = useState([])
+  const [specificComic, setSpecificComic] = useState({})
+
+  const [showComic, setShowComic] = useState(true)
+  
 
 
+  useEffect(() => {
+    axios.get('https://ancient-badlands-39410.herokuapp.com/comics').then((response) => {
+      setNewComic(response.data)
+    })
+  }, [])
 
-    useEffect(() => {
-        axios.get('https://ancient-badlands-39410.herokuapp.com/comics').then((response) => {
-            setNewComic(response.data)
-            console.log(response.data)
-        })
-    },[])
+    
+  const showPage = () => {
+    setShowComic(!showComic)
+  }
 
 
-    return (
-        <div className="collection">
-            {comic.map((comic) => {
-                return( 
-                    <Card style={{ width: '18rem', margin: '1em' }}>
-                    <Card.Img variant="top" src={comic.img} />
-                    <Card.Body>
-                      <Card.Title>{comic.superhero}</Card.Title>
-                      <Card.Text>
-                      </Card.Text>
-                      <Button variant="primary">Show More</Button>
-                    </Card.Body>
-                  </Card>
-                );
-              }
-              
-            )}
+  return (
+    <div className="collection">
+      {comic.map((singleComic) => {
+        return (
+          <>
+            <Card style={{ width: '18rem', margin: '1em' }}>
+              <Card.Img variant="top" src={singleComic.img} />
+              <Card.Body>
+                <Card.Title>{singleComic.superhero}</Card.Title>
+                <Card.Text>
+                </Card.Text>
+                {showComic ? <Show setNewComic={setNewComic}comic={singleComic}/> : null}
+              </Card.Body>
+            </Card>
+          </>
+        );
+      }
 
-        </div>
+      )}
 
-    )
+    </div>
+
+  )
 
 }
 
 export default Home
+
+//whaterver export is calling then inside of that you put in props!
 
