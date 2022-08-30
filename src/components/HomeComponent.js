@@ -1,71 +1,58 @@
 import axios from 'axios'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import ShowComic from './ShowComponent'
+import Show from './ShowComponent'
 
 
 const Home = (props) => {
-    const [hero, setNewHero] = useState("")
-    const [img, setNewImg] = useState("")
-    const [releaseDate, setNewReleaseDate] = useState("")
-    const [description, setNewDescription] = useState("")
-    const [rating, setNewrating] = useState("")
-    const [comic, setNewComic] = useState([])
+  const [hero, setNewHero] = useState("")
+  const [img, setNewImg] = useState("")
+  const [releaseDate, setNewReleaseDate] = useState("")
+  const [description, setNewDescription] = useState("")
+  const [rating, setNewrating] = useState("")
+  const [comic, setNewComic] = useState([])
+  const [specificComic, setSpecificComic] = useState({})
 
-    const [showComic, setShowComic] = useState (true)
-
-
-
-    useEffect(() => {
-        axios.get('https://ancient-badlands-39410.herokuapp.com/comics').then((response) => {
-            setNewComic(response.data)
-            console.log(response.data)
-        })
-    },[])
-
-    const showPage = () => {
-      setShowComic(!showComic)
-     
-      
-    }
+  const [showComic, setShowComic] = useState(true)
+  
 
 
-    return (
-        <div className="collection">
-            {comic.map((comic) => {
-                return( 
-                  <>
-                    <Card style={{ width: '18rem', margin: '1em' }}>
-                      <Card.Img variant="top" src={comic.img} />
-                      <Card.Body>
-                        <Card.Title>{comic.superhero}</Card.Title>
-                        <Card.Text>
-                        </Card.Text>
-                        <Button variant="primary" onClick={showPage}>Show More</Button>
-                      </Card.Body>
-                    </Card>
-                  {showComic? <details>
-                    <summary>Learn More</summary>
-                    <h1>
-                      Author: {comic.author}
-                    </h1>
-                    <h3>Release Date: {comic.releaseDate}</h3>
-                    <h3>Rating: {comic.rating}</h3>
-                    <p>
-                      {comic.description}
-                    </p>
+  useEffect(() => {
+    axios.get('https://ancient-badlands-39410.herokuapp.com/comics').then((response) => {
+      setNewComic(response.data)
+    })
+  }, [])
 
-                  </details> : null}
-                  </>
-                );
-              }
-              
-            )}
+    
+  const showPage = () => {
+    setShowComic(!showComic)
+  }
 
-        </div>
 
-    )
+  return (
+    <div className="collection">
+      {comic.map((singleComic) => {
+        return (
+          <>
+            <Card style={{ width: '18rem', margin: '1em' }}>
+              <Card.Img variant="top" src={singleComic.img} />
+              <Card.Body>
+                <Card.Title>{singleComic.superhero}</Card.Title>
+                <Card.Text>
+                </Card.Text>
+                {showComic ? <Show setNewComic={setNewComic}comic={singleComic}/> : null}
+              </Card.Body>
+            </Card>
+          </>
+        );
+      }
+
+      )}
+
+    </div>
+
+  )
 
 }
 
