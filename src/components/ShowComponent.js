@@ -3,24 +3,96 @@ import axios from 'axios'
 
 const Show = (props) => {
 
-    useEffect(() => {
-        axios.get(`https://ancient-badlands-39410.herokuapp.com/comics/${props.comic._id}`).then((response) => {
-            console.log(response.data)
+    let [showSinglecomic, setSinglecomic] = useState({})
+    let [editSuperhero, setEditSuperhero] = useState('')
+    let [editImg, setEditImg] = useState('')
+    let [editAuthor, setEditAuthor] = useState('')
+    let [editReleaseDate, setEditReleaseDate] = useState('')
+    let [editDescription, setEditDescription] = useState('')
+
+    const handleShowComic = (comic) => {
+        axios.get(`https://ancient-badlands-39410.herokuapp.com/comics/${comic._id}`)
+        .then((response) => {
+            setSinglecomic(response.data)
+        }
+    )
+}
+
+    const handleEditSuperhero = (event) => {
+        setEditSuperhero(event.target.value)
+    }
+
+    const handleEditImg = (event) => {
+        setEditImg(event.target.value)
+    }
+
+    const handleEditAuthor = (event) => {
+        setEditAuthor(event.target.value)
+    }
+
+    const handleEditReleaseDate = (event) => {
+        setEditReleaseDate(event.target.value)
+    }
+
+    const handleEditDescription = (event) => {
+        setEditDescription(event.target.value)
+    }
+
+    const comicDelete = (comic) => {
+        axios.delete(`https://ancient-badlands-39410.herokuapp.com/comics/${comic._id}`)
+        .then(()=>{
+            axios
+            .get('https://ancient-badlands-39410.herokuapp.com/comics')
+            .then((response) => {
+                props.setNewComic(response.data)
+            })
         })
-    }, [])
+    }
+
+    const editComic = (comic) => {
+        axios.put(`https://ancient-badlands-39410.herokuapp.com/comics/${comic._id}`,
+        {
+            superhero: editSuperhero,
+            img: editImg, 
+            author: editAuthor,
+            releaseDate: editReleaseDate,
+            description: editDescription,
+        })
+        .then(() => {
+            axios.get('https://ancient-badlands-39410.herokuapp.com/comics')
+            .then((response) => {
+                props.setNewComic(response.data)
+            })
+        })
+    }
+
+    
 
     return <div>
-        <details >
+        <details onClick={() => {handleShowComic(props.comic)}}>
             <summary>Show More</summary>
             <h1>
-                Author: {props.comic.author}
+                Author: {showSinglecomic.author}
             </h1>
-            <h3>Release Date: {props.comic.releaseDate}</h3>
-            <h3>Rating: {props.comic.rating}</h3>
+            <h3>Release Date: {showSinglecomic.releaseDate}</h3>
+            <h3>Rating: {showSinglecomic.rating}</h3>
             <p>
-                {props.comic.description}
+                {showSinglecomic.description}
             </p>
-            <button>DELETE</button>
+            <button onClick={(event) => {
+                comicDelete(props.comic)
+            }}>DELETE</button>
+            <details>
+            <summary>EDIT</summary>
+            <form onSubmit={() => {{editComic(props.comic)}}}>
+                    Superhero Name: <input type='text' onChange={handleEditSuperhero} value={props.comic.superhero}/><br/>
+                    Cover Art URL: <input type='text' onChange={handleEditImg} value={props.comic.img}/><br/>
+                    Author: <input type='text' onChange={handleEditAuthor} placeholder={props.comic.author}/><br/>
+                    Release Date: <input type='text' onChange={handleEditReleaseDate} placeholder={props.comic.releaseDate}/><br/>
+                    Description: <input type='text' onChange={handleEditDescription} placeholder={props.comic.description}/><br/>
+                    <input type='submit' placeholder='SUBMIT CHANGES'/>
+                </form>
+        </details>
         </details>
     </div>
 
