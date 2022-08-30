@@ -42,22 +42,22 @@
 
 summary{
   border-style: solid;
-  color: white;
+  color: black;;
   margin: 2em;
   font-family: 'Kdam Thmor Pro', sans-serif;
   
 }
 h1{
   font-family: 'Kdam Thmor Pro', sans-serif;
-  color: white
+  color: black;
 }
 
 h3{
   font-family: 'Kdam Thmor Pro', sans-serif;
-  color: white
+  color: black;
 }
 
 p{
-  color: white;
+  color: black;;
   font-family: 'Kdam Thmor Pro', sans-serif;
 }
