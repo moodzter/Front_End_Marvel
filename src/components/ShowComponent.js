@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+
 
 
 
@@ -80,7 +83,7 @@ const Show = (props) => {
     
 
     return <div>
-        <Button variant="primary" onClick={()=>{ handleShowComic(props.comic); handleShow ()}} >
+        <Button variant="info" onClick={()=>{ handleShowComic(props.comic); handleShow ()}} >
                   Show More
                 </Button>
                 <Offcanvas show={show} onHide={handleClose} backdrop="static">
@@ -97,6 +100,34 @@ const Show = (props) => {
                     }}>DELETE</button>
                   </Offcanvas.Body>
                 </Offcanvas>
+                <>
+      {['top'].map((placement) => (
+        <OverlayTrigger
+          trigger="click"
+          key={placement}
+          placement={placement}
+          overlay={
+            <Popover id={`popover-positioned-${placement}`}>
+              <Popover.Header as="h3"> EDIT</Popover.Header>
+              <Popover.Body>
+              <form onSubmit={() => {{editComic(props.comic)}}}>
+                    Superhero Name: <input type='text' onChange={handleEditSuperhero} value={props.comic.superhero}/><br/>
+                    Cover Art URL: <input type='text' onChange={handleEditImg} value={props.comic.img}/><br/>
+                    Author: <input type='text' onChange={handleEditAuthor} placeholder={props.comic.author}/><br/>
+                    Release Date: <input type='text' onChange={handleEditReleaseDate} placeholder={props.comic.releaseDate}/><br/>
+                    Description: <input type='text' onChange={handleEditDescription} placeholder={props.comic.description}/><br/>
+                    <input type='submit' placeholder='SUBMIT CHANGES'/>
+                </form>
+              </Popover.Body>
+            </Popover>
+          }
+        >
+          <Button variant="primary">Edit Comic</Button>
+        </OverlayTrigger>
+      ))}
+    </>
+               
+
     
     </div>
 
