@@ -12,13 +12,15 @@ const App = () => {
   let [showComics, setComics] = useState(true)
   let [showId, setShowId]= useState(false)
 
+  const [cart, setCart]= useState(0)
+
 
 
 
   return (
     <div className="parent">
       <div>
-        <ComicNav setComics={setComics} showNewForm={showNewForm} setNewForm={setNewForm} showComics={showComics}/> 
+        <ComicNav cart={cart} setCart={setCart} setComics={setComics} showNewForm={showNewForm} setNewForm={setNewForm} showComics={showComics}/> 
       </div>
       <div>
       {showNewForm ?
@@ -27,7 +29,7 @@ const App = () => {
       </div>
       <div className="home-container">
         {showComics ?
-        <Home showId={showId} setShowId={setShowId}/>
+        <Home cart={cart} setCart={setCart} showId={showId} setShowId={setShowId}/>
           :
         null}
       </div>

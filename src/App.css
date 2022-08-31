@@ -68,4 +68,81 @@ p{
 
 .card-title {
   font-family: 'Kdam Thmor Pro', sans-serif;
+  text-align: center;
+
+}
+
+
+.card-body{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card-title.h5{
+  font-size: 30px;
+  padding-top: .5em;
+}
+.btn-info{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  width: 70px;
+  font-size: small;
+  margin-left: 1em;
+  margin-right: 1em;
+
+
+}
+.btn-primary{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  width: 70px;
+  font-size: small;
+
+
+}
+.btn-success{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  width: 70px;
+  font-size: small;
+
+
+}
+
+
+
+.card:hover{
+  animation: shake 0.6s;
+  animation-iteration-count: 10s;
+}
+
+
+@keyframes shake {
+0% {transform: translate(1px, 1px) rotate(0deg);}
+50% {transform: translate(-1px, -2px) rotate(-1deg);}
+100% {transform: translate(-3px, 0px) rotate(1deg);}
+
+}
+
+.offcanvas{
+ background-image: url(https://www.idlewp.com/wp-content/uploads/2021/08/marvel-comic-wallpaper-idlewp.jpg);
+ background-repeat: no-repeat;
+ background-size: 100% 100%;
+
+
+}
+
+
+
+
+.offcanvas-header{
+  color: white; 
+  background-color: rgba(0,0,0,0.5);
+
+}
+
+.offcanvas-body h3,h1,p{
+  color: white;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.btn-close{
+  background-color:red
 }
