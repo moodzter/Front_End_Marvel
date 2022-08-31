@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Show from './ShowComponent'
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 
 
 const Home = (props) => {
@@ -18,7 +20,16 @@ const Home = (props) => {
   const [hidden, setHidden] = useState('')
   const [id, setId] = useState('')
   const [giveID, setgiveID] = useState('')
-  
+
+
+
+
+
+  const addCart = () => {
+    props.setCart(props.cart + 1)
+}
+
+
   useEffect(() => {
     axios.get('https://ancient-badlands-39410.herokuapp.com/comics').then((response) => {
       setNewComic(response.data)
@@ -44,10 +55,9 @@ const Home = (props) => {
               <Card.Img variant="top" src={singleComic.img} />
               <Card.Body>
                 <Card.Title>{singleComic.superhero}</Card.Title>
-                <Card.Text>
-                </Card.Text>
+                <Button onClick={addCart}variant="primary">Add To Cart</Button>
                 {showComic ? <Show setNewComic={setNewComic}comic={singleComic} setHidden={setHidden} setgiveID={setgiveID}/> : null}
-              </Card.Body>
+                </Card.Body>
             </Card>
           </>
         );
