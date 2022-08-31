@@ -44,11 +44,25 @@ const Home = (props) => {
     setShowComic(!showComic)
   }
 
-  const mapName = comic.map((comic) => {
-    return <>
-      <Dropdown.Item>{comic.superhero}</Dropdown.Item>
-    </>
+  const uniqueNames = [];
+  console.log(uniqueNames)
+
+  const uniqueSuperheros = comic.filter(element => {
+    const isDuplicate = uniqueNames.includes(element.superhero);
+
+    if(!isDuplicate) {
+      uniqueNames.push(element.superhero);
+
+      return true;
+    }
+
+    return false;
   })
+  
+
+  //create a function that can sort by comic.superhero
+
+  
   return (<>
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -56,7 +70,11 @@ const Home = (props) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {mapName}
+        {uniqueNames.map(name => {
+          return (
+            <Dropdown.Item>{name.superhero}</Dropdown.Item>
+          )
+        })}
       </Dropdown.Menu>
     </Dropdown>
     <div className="collection">
@@ -69,7 +87,7 @@ const Home = (props) => {
                 <Card.Title>{singleComic.superhero}</Card.Title>
                 <Card.Body>
                 
-                <Button variant="success" onClick={addCart}>Add To Cart</Button>
+                <Button variant="success"onClick={addCart}>Add To Cart</Button>
                 {showComic ? <Show setNewComic={setNewComic}comic={singleComic} setHidden={setHidden} setgiveID={setgiveID}/> : null}
                 </Card.Body>
             </Card>
