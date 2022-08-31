@@ -36,6 +36,11 @@ const App = () => {
       <div>
         {showId ? <ShowComic/> : null}
       </div>
+      <div className="footer">
+          <div>&copy;All Rights Reserved</div>
+          <div>Comic World &trade; </div>
+          <div>&#9824;Mauricio Serrato & Nick Moody &#9824;</div>
+      </div>
     </div>
   )
 }
