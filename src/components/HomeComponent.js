@@ -44,20 +44,23 @@ const Home = (props) => {
     setShowComic(!showComic)
   }
 
-  const uniqueIds = [];
+  const uniqueNames = [];
+  console.log(uniqueNames)
 
   const uniqueSuperheros = comic.filter(element => {
-    const isDuplicate = uniqueIds.includes(element.id);
+    const isDuplicate = uniqueNames.includes(element.superhero);
 
     if(!isDuplicate) {
-      uniqueIds.push(element.id);
+      uniqueNames.push(element.superhero);
 
       return true;
     }
 
     return false;
   })
-  console.log(comic)
+  
+
+  //create a function that can sort by comic.superhero
 
   
   return (<>
@@ -67,9 +70,9 @@ const Home = (props) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {uniqueSuperheros.map(superhero => {
+        {uniqueNames.map(name => {
           return (
-            <Dropdown.Item>{superhero.superhero}</Dropdown.Item>
+            <Dropdown.Item>{name.superhero}</Dropdown.Item>
           )
         })}
       </Dropdown.Menu>
