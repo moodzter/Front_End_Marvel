@@ -68,4 +68,43 @@ p{
 
 .card-title {
   font-family: 'Kdam Thmor Pro', sans-serif;
+  text-align: center;
+
 }
+
+
+.card-body{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card-title.h5{
+  font-size: 30px;
+  padding-top: .5em;
+}
+.btn-info{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  width: 70px;
+  font-size: small;
+  margin-left: 1em;
+  margin-right: 1em;
+
+
+}
+.btn-primary{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  width: 70px;
+  font-size: small;
+
+
+}
+.btn-success{
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  width: 70px;
+  font-size: small;
+
+
+}
+
+
+

@@ -53,9 +53,10 @@ const Home = (props) => {
             
             <Card className={hidden} key={singleComic._id} style={{ width: '18rem', margin: '1em' }}>
               <Card.Img variant="top" src={singleComic.img} />
+              <Card.Title>{singleComic.superhero}</Card.Title>
               <Card.Body>
-                <Card.Title>{singleComic.superhero}</Card.Title>
-                <Button onClick={addCart}variant="primary">Add To Cart</Button>
+                
+                <Button variant="success" onClick={addCart}>Add To Cart</Button>
                 {showComic ? <Show setNewComic={setNewComic}comic={singleComic} setHidden={setHidden} setgiveID={setgiveID}/> : null}
                 </Card.Body>
             </Card>
