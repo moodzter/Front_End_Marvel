@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Show from './ShowComponent'
 import Offcanvas from 'react-bootstrap/Offcanvas';
-
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
 const Home = (props) => {
@@ -44,8 +44,21 @@ const Home = (props) => {
     setShowComic(!showComic)
   }
 
+  const mapName = comic.map((comic) => {
+    return <>
+      <Dropdown.Item>{comic.superhero}</Dropdown.Item>
+    </>
+  })
+  return (<>
+    <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Dropdown Button
+      </Dropdown.Toggle>
 
-  return (
+      <Dropdown.Menu>
+        {mapName}
+      </Dropdown.Menu>
+    </Dropdown>
     <div className="collection">
       {comic.map((singleComic) => {
         return (
@@ -67,6 +80,7 @@ const Home = (props) => {
       )}
 
     </div>
+    </>
 
   )
 
