@@ -31,7 +31,7 @@
 
 .home-container {
   margin-top: 2em;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-basis: auto;
   align-items: center;
@@ -154,3 +154,15 @@ p{
 Form.Group {
   margin-right: 50vw;
 }
+
+.footer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80px;
+  margin: 1em 0 0 0;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: white;
+}
+

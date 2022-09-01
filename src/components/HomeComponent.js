@@ -70,7 +70,7 @@ const Home = (props) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {uniqueNames.map(name => {
+        {uniqueSuperheros.map(name => {
           return (
             <Dropdown.Item>{name.superhero}</Dropdown.Item>
           )
