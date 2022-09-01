@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { computeHeadingLevel } from '@testing-library/react';
 
 
-const Home = (props) => {
+const Home = ({cart,setCart,showId,setShowId}) => {
   const [hero, setNewHero] = useState("")
   const [img, setNewImg] = useState("")
   const [releaseDate, setNewReleaseDate] = useState("")
@@ -28,7 +28,7 @@ const Home = (props) => {
 
 
   const addCart = () => {
-    props.setCart(props.cart + 1)
+    setCart(cart + 1)
 }
 
   const setComicData = () => {
@@ -126,5 +126,5 @@ const Home = (props) => {
 
 export default Home
 
-//whaterver export is calling then inside of that you put in props!
+//whaterver export is calling then inside of that you put in 
 
