@@ -25,11 +25,13 @@ const Home = ({cart,setCart,showId,setShowId}) => {
   const [id, setId] = useState('')
   const [giveID, setgiveID] = useState('')
 
+
   
 
 
 
 //====== cart item counter =================================
+
   const addCart = () => {
     setCart(cart + 1)
 }
