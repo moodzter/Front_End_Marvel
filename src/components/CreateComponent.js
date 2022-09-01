@@ -2,8 +2,9 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-const Create = () => {
+const Create = (props) => {
 
 
     //States
@@ -43,7 +44,13 @@ const Create = () => {
         setNewDescription(event.target.value)
     }
 
+    const showCollection = () => {
+        props.setNewForm(!props.showNewForm)
+        props.setComic(!props.showComics)
+    }
+
     const handleComicSubmission = (event) => {
+        alert(`You've added a new Comic!!!! Visit Collection To See Your Comic!!!!!!`)
         event.preventDefault();
         axios.post(
             'https://ancient-badlands-39410.herokuapp.com/comics',
@@ -53,6 +60,8 @@ const Create = () => {
                 author: newAuthor,
                 releaseDate: newReleaseDate,
                 description: newDescription,
+                rating: newRating,
+                price: newPrice,
             }
         ).then(() => {
             axios.get('https://ancient-badlands-39410.herokuapp.com/comics')
@@ -65,7 +74,7 @@ const Create = () => {
 
     //=====>Return Statement
     return (
-        <Form onSubmit={handleComicSubmission}>
+        <Form onSubmit={(handleComicSubmission)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Super-Hero Name</Form.Label>
                 <Form.Control className='NewForm' type="text" placeholder="Enter Superhero Name" onChange={handleChangeSuperhero}/>
@@ -76,14 +85,17 @@ const Create = () => {
                 <Form.Label>Author</Form.Label>
                 <Form.Control className='NewForm' type='text' placeholder='Enter Author Here' onChange={handleChangeAuthor}/>
                 <Form.Label>Description</Form.Label>
-                <Form.Control className='NewForm' type='text' placeholder='Enter Desccription Here' onChange={handleChangeDescription}/>
+                <Form.Control className='NewForm' type='text' placeholder='Enter Description Here' onChange={handleChangeDescription}/>
                 <Form.Label>Rating</Form.Label>
-                <Form.Control className='NewForm' type='text' placeholder='Enter Desccription Here' onChange={handleChangeRating}/>
+                <Form.Control className='NewForm' type='number' placeholder='Enter Rating Here' onChange={handleChangeRating}/>
                 <Form.Label>Price</Form.Label>
-                <Form.Control className='NewForm' type='text' placeholder='Enter Desccription Here' onChange={handleChangePrice}/>
+                <Form.Control className='NewForm' type='number' placeholder='Enter Price Here' onChange={handleChangePrice}/>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
+            </Button>
+            <Button variant="success" onClick={showCollection}>
+                To Collection
             </Button>
         </Form>
     )

@@ -24,7 +24,7 @@ const App = () => {
       </div>
       <div>
       {showNewForm ?
-        <Create/> :
+        <Create showComics={showComics} showNewForm={showNewForm} setComic={setComics} setNewForm={setNewForm}/> :
         null}
       </div>
       <div className="home-container">
