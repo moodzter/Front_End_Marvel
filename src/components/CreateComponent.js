@@ -1,60 +1,84 @@
 import axios from 'axios'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const Create = () => {
 
 
-//States
-let [comics, setComics] = useState()
-let [newSuperhero, setNewSuperhero] = useState()
-let [newImg, setNewImg] = useState()
-let [newAuthor, setNewAuthor] = useState()
-let [newReleaseDate, setNewReleaseDate] = useState()
-let [newDescription, setNewDescription] = useState()
+    //States
+    let [comics, setComics] = useState()
+    let [newSuperhero, setNewSuperhero] = useState()
+    let [newImg, setNewImg] = useState()
+    let [newAuthor, setNewAuthor] = useState()
+    let [newReleaseDate, setNewReleaseDate] = useState()
+    let [newDescription, setNewDescription] = useState()
 
 
-//=====>Functions
-const handleChangeSuperhero = (event) => {
-    setNewSuperhero(event.target.value)
+    //=====>Functions
+    const handleChangeSuperhero = (event) => {
+        setNewSuperhero(event.target.value)
+    }
+
+    const handleChangeImg = (event) => {
+        setNewImg(event.target.value)
+    }
+
+    const handleChangeAuthor = (event) => {
+        setNewAuthor(event.target.value)
+    }
+    const handleChangeReleaseDate = (event) => {
+        setNewReleaseDate(event.target.value)
+    }
+    const handleChangeDescription = (event) => {
+        setNewDescription(event.target.value)
+    }
+
+    const handleComicSubmission = (event) => {
+        event.preventDefault();
+        axios.post(
+            'https://ancient-badlands-39410.herokuapp.com/comics',
+            {
+                superhero: newSuperhero,
+                img: newImg,
+                author: newAuthor,
+                releaseDate: newReleaseDate,
+                description: newDescription,
+            }
+        ).then(() => {
+            axios.get('https://ancient-badlands-39410.herokuapp.com/comics')
+                .then((response => {
+                    setComics(response.data)
+                }))
+        })
+    }
+
+
+    //=====>Return Statement
+    return (
+        <Form onSubmit={handleComicSubmission}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Super-Hero Name</Form.Label>
+                <Form.Control className='NewForm' type="text" placeholder="Enter Superhero Name" onChange={handleChangeSuperhero}/>
+                <Form.Label>Cover Art URL</Form.Label>
+                <Form.Control className='NewForm' type='text' placeholder='Enter URL Here' onChange={handleChangeImg}/>
+                <Form.Label>Release Date of Comic</Form.Label>
+                <Form.Control className='NewForm' type='text' placeholder='Enter Release Date Here' onChange={handleChangeReleaseDate}/>
+                <Form.Label>Author</Form.Label>
+                <Form.Control className='NewForm' type='text' placeholder='Enter Author Here' onChange={handleChangeAuthor}/>
+                <Form.Label>Description</Form.Label>
+                <Form.Control className='NewForm' type='text' placeholder='Enter Desccription Here' onChange={handleChangeDescription}/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
+    )
 }
 
-const handleChangeImg = (event) => {
-    setNewImg(event.target.value)
-}
+export default Create;
 
-const handleChangeAuthor = (event) => {
-    setNewAuthor(event.target.value)
-}
-const handleChangeReleaseDate = (event) => {
-    setNewReleaseDate(event.target.value)
-}
-const handleChangeDescription = (event) => {
-    setNewDescription(event.target.value)
-}
-
-const handleComicSubmission = (event) => {
-    event.preventDefault();
-    axios.post(
-        'https://ancient-badlands-39410.herokuapp.com/comics',
-        {
-            superhero: newSuperhero, 
-            img: newImg,
-            author: newAuthor,
-            releaseDate: newReleaseDate,
-            description: newDescription,
-        }
-    ).then(() => {
-        axios.get('https://ancient-badlands-39410.herokuapp.com/comics')
-        .then((response => {
-            setComics(response.data)
-        }))
-    })
-}
-
-
-//=====>Return Statement
-return (
-    <div className="createWrapper">
+{/* <div className="createWrapper">
         <div>
             <h1>Add a NEW Comic</h1>
         </div>
@@ -78,8 +102,4 @@ return (
                 <input type='submit' value='Submit NEW Comic'/>
             </form>
         </div>
-    </div>
-)
-}
-
-export default Create;
+    </div> */}
