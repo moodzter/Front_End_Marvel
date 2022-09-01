@@ -27,12 +27,12 @@ const App = () => {
         <Create showComics={showComics} showNewForm={showNewForm} setComic={setComics} setNewForm={setNewForm}/> :
         null}
       </div>
-      <div className="home-container">
+      
         {showComics ?
         <Home cart={cart} setCart={setCart} showId={showId} setShowId={setShowId}/>
           :
         null}
-      </div>
+      
       <div>
         {showId ? <ShowComic/> : null}
       </div>
