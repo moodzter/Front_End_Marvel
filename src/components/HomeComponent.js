@@ -6,6 +6,7 @@ import Show from './ShowComponent'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { computeHeadingLevel } from '@testing-library/react';
+import SortedMenu from './DropdownComponent'
 
 
 const Home = ({cart,setCart,showId,setShowId}) => {
@@ -83,20 +84,10 @@ const Home = ({cart,setCart,showId,setShowId}) => {
 
   
   return (<>
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Sort By Name
-      </Dropdown.Toggle>
-      <Button id="collectionsButton"onClick={setComicData}>Collections</Button>
-      
-      <Dropdown.Menu>
-        {uniqueSuperheros.map(name => {
-          return (
-            <Dropdown.Item onClick={() => {sortComics(name)}}>{name.superhero}</Dropdown.Item>
-          )
-        })}
-      </Dropdown.Menu>
-    </Dropdown>
+    <div className='buttons-primary'>
+    <SortedMenu uniqueSuperheros={uniqueSuperheros} sortComics={sortComics} setComicData={setComicData}/>
+    </div>
+    <div className="home-container">
     <div className="collection">
       {comic.map((singleComic) => {
         return (
@@ -118,7 +109,9 @@ const Home = ({cart,setCart,showId,setShowId}) => {
       )}
 
     </div>
+    </div>
     </>
+
 
   )
 
