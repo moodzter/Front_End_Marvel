@@ -13,11 +13,20 @@ const Create = () => {
     let [newAuthor, setNewAuthor] = useState()
     let [newReleaseDate, setNewReleaseDate] = useState()
     let [newDescription, setNewDescription] = useState()
-
+    let [newRating, setNewRating] = useState()
+    let [newPrice, setNewPrice] = useState()
 
     //=====>Functions
     const handleChangeSuperhero = (event) => {
         setNewSuperhero(event.target.value)
+    }
+
+    const handleChangeRating = (event) => {
+        setNewRating(event.target.value)
+    }
+
+    const handleChangePrice = (event) => {
+        setNewPrice(event.target.value)
     }
 
     const handleChangeImg = (event) => {
@@ -68,6 +77,10 @@ const Create = () => {
                 <Form.Control className='NewForm' type='text' placeholder='Enter Author Here' onChange={handleChangeAuthor}/>
                 <Form.Label>Description</Form.Label>
                 <Form.Control className='NewForm' type='text' placeholder='Enter Desccription Here' onChange={handleChangeDescription}/>
+                <Form.Label>Rating</Form.Label>
+                <Form.Control className='NewForm' type='text' placeholder='Enter Desccription Here' onChange={handleChangeRating}/>
+                <Form.Label>Price</Form.Label>
+                <Form.Control className='NewForm' type='text' placeholder='Enter Desccription Here' onChange={handleChangePrice}/>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
