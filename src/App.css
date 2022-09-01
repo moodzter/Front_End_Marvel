@@ -62,16 +62,19 @@ p{
   font-family: 'Kdam Thmor Pro', sans-serif;
 }
 
-.hide {
-  display: none;
-}
-
 .card-title {
   font-family: 'Kdam Thmor Pro', sans-serif;
   text-align: center;
-
 }
 
+#dropdown-basic{
+  margin-right: 1em;
+  width: fit-content;
+}
+
+#collectionsButton {
+  width: fit-content;
+}
 
 .card-body{
   display: flex;
@@ -147,6 +150,13 @@ p{
   background-color:red
 }
 
+.NewForm {
+  margin-left: 1.5em;
+}
+
+Form.Group {
+  margin-right: 50vw;
+}
 
 .footer{
   display:flex;
@@ -158,3 +168,4 @@ p{
   font-family: 'Kdam Thmor Pro', sans-serif;
   color: white;
 }
+
