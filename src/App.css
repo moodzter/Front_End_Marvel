@@ -147,6 +147,13 @@ p{
   background-color:red
 }
 
+.NewForm {
+  margin-left: 1.5em;
+}
+
+Form.Group {
+  margin-right: 50vw;
+}
 
 .footer{
   display:flex;
@@ -158,3 +165,4 @@ p{
   font-family: 'Kdam Thmor Pro', sans-serif;
   color: white;
 }
+
