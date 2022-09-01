@@ -146,3 +146,11 @@ p{
 .btn-close{
   background-color:red
 }
+
+.NewForm {
+  margin-left: 1.5em;
+}
+
+Form.Group {
+  margin-right: 50vw;
+}
