@@ -13,9 +13,12 @@ const Home = (props) => {
   const [releaseDate, setNewReleaseDate] = useState("")
   const [description, setNewDescription] = useState("")
   const [rating, setNewrating] = useState("")
+  const [price, setnewPrice] = useState("")
   const [comic, setNewComic] = useState([])
   const [specificComic, setSpecificComic] = useState({})
 
+
+  ///==== are these states functional? =====
   const [showComic, setShowComic] = useState(true)
   const [hidden, setHidden] = useState('')
   const [id, setId] = useState('')
@@ -24,7 +27,7 @@ const Home = (props) => {
 
 
 
-
+//====== cart item counter =================================
   const addCart = () => {
     props.setCart(props.cart + 1)
 }
@@ -88,7 +91,7 @@ const Home = (props) => {
                 <Card.Body>
                 
                 <Button variant="success"onClick={addCart}>Add To Cart</Button>
-                {showComic ? <Show setNewComic={setNewComic}comic={singleComic} setHidden={setHidden} setgiveID={setgiveID}/> : null}
+                {showComic ? <Show hero={hero} img={img} releaseDate={releaseDate} description={description} rating={rating} price={price}setNewComic={setNewComic}comic={singleComic} setHidden={setHidden} setgiveID={setgiveID}/> : null}
                 </Card.Body>
             </Card>
           </>

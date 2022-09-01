@@ -16,6 +16,7 @@ const Show = (props) => {
     let [editAuthor, setEditAuthor] = useState('')
     let [editReleaseDate, setEditReleaseDate] = useState('')
     let [editDescription, setEditDescription] = useState('')
+    let [editPrice, setPrice] = useState('')
 
 
 
@@ -31,6 +32,10 @@ const Show = (props) => {
         }
     )
 }
+
+    const handleEditPrice = (event) => {
+        setPrice(event.target.value)
+    }
 
     const handleEditSuperhero = (event) => {
         setEditSuperhero(event.target.value)
@@ -66,11 +71,12 @@ const Show = (props) => {
     const editComic = (comic) => {
         axios.put(`https://ancient-badlands-39410.herokuapp.com/comics/${comic._id}`,
         {
-            superhero: editSuperhero,
-            img: editImg, 
-            author: editAuthor,
-            releaseDate: editReleaseDate,
-            description: editDescription,
+            superhero: editSuperhero ? editSuperhero : props.hero,
+            img: editImg ? editImg : props.img,
+            author: editAuthor ? editAuthor : props.author,
+            releaseDate: editReleaseDate ? editReleaseDate : props.releaseDate,
+            description: editDescription ? editDescription : props.description,
+            price: editPrice
         })
         .then(() => {
             axios.get('https://ancient-badlands-39410.herokuapp.com/comics')
@@ -95,6 +101,7 @@ const Show = (props) => {
                     <h3>{showSinglecomic.releaseDate}</h3>
                     <h3>{showSinglecomic.rating}</h3>
                     <p>{showSinglecomic.description}</p>
+                    <h3>{showSinglecomic.price}</h3>
                     <button onClick={(event) => {
                         comicDelete(props.comic)
                     }}>DELETE</button>
@@ -110,13 +117,17 @@ const Show = (props) => {
             <Popover id={`popover-positioned-${placement}`}>
               <Popover.Header as="h3"> EDIT</Popover.Header>
               <Popover.Body>
-              <form onSubmit={() => {{editComic(props.comic)}}}>
-                    Superhero Name: <input type='text' onChange={handleEditSuperhero} value={props.comic.superhero}/><br/>
-                    Cover Art URL: <input type='text' onChange={handleEditImg} value={props.comic.img}/><br/>
+              <form onSubmit={(event) => {
+                event.preventDefault()
+                editComic(props.comic)}}>
+                    Superhero Name: <input type='text' onChange={handleEditSuperhero} placeholder={props.comic.superhero}/><br/>
+                    Cover Art URL: <input type='text' onChange={handleEditImg} placeholder={props.comic.img}/><br/>
                     Author: <input type='text' onChange={handleEditAuthor} placeholder={props.comic.author}/><br/>
                     Release Date: <input type='text' onChange={handleEditReleaseDate} placeholder={props.comic.releaseDate}/><br/>
                     Description: <input type='text' onChange={handleEditDescription} placeholder={props.comic.description}/><br/>
+                    Price: <input type='text' onChange={handleEditPrice} placeholder={props.comic.description}/><br/>
                     <input type='submit' placeholder='SUBMIT CHANGES'/>
+                    <button></button>
                 </form>
               </Popover.Body>
             </Popover>
