@@ -87,8 +87,8 @@ const Home = ({cart,setCart,showId,setShowId}) => {
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Sort By Name
       </Dropdown.Toggle>
-      <Button onClick={setComicData}>Collections</Button>
-
+      <Button id="collectionsButton"onClick={setComicData}>Collections</Button>
+      
       <Dropdown.Menu>
         {uniqueSuperheros.map(name => {
           return (
