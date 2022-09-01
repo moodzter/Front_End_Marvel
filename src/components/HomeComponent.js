@@ -5,35 +5,39 @@ import Button from 'react-bootstrap/Button';
 import Show from './ShowComponent'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { computeHeadingLevel } from '@testing-library/react';
 
 
-const Home = (props) => {
+const Home = ({cart,setCart,showId,setShowId}) => {
   const [hero, setNewHero] = useState("")
   const [img, setNewImg] = useState("")
   const [releaseDate, setNewReleaseDate] = useState("")
   const [description, setNewDescription] = useState("")
   const [rating, setNewrating] = useState("")
+  const [price, setnewPrice] = useState("")
   const [comic, setNewComic] = useState([])
   const [specificComic, setSpecificComic] = useState({})
 
+
+  ///==== are these states functional? =====
   const [showComic, setShowComic] = useState(true)
   const [hidden, setHidden] = useState('')
   const [id, setId] = useState('')
   const [giveID, setgiveID] = useState('')
 
-
-
-
+//====== cart item counter =================================
 
   const addCart = () => {
-    props.setCart(props.cart + 1)
+    setCart(cart + 1)
 }
 
-
-  useEffect(() => {
+  const setComicData = () => {
     axios.get('https://ancient-badlands-39410.herokuapp.com/comics').then((response) => {
       setNewComic(response.data)
     })
+  }
+  useEffect(() => {
+    setComicData()
   }, [])
 
   const changeIdName = (comic) => {
@@ -44,9 +48,24 @@ const Home = (props) => {
     setShowComic(!showComic)
   }
 
-  const uniqueNames = [];
-  console.log(uniqueNames)
 
+
+
+  const sortComics = (item) => {
+    let tomato = []
+    comic.map((potato) => {
+      if(potato.superhero === item.superhero){
+        tomato.push(potato)
+      }
+    })
+    console.log(tomato)
+    setNewComic(tomato)
+  }
+
+
+
+  const uniqueNames = [];
+  
   const uniqueSuperheros = comic.filter(element => {
     const isDuplicate = uniqueNames.includes(element.superhero);
 
@@ -66,13 +85,14 @@ const Home = (props) => {
   return (<>
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Dropdown Button
+        Sort By Name
       </Dropdown.Toggle>
-
+      <Button id="collectionsButton"onClick={setComicData}>Collections</Button>
+      
       <Dropdown.Menu>
         {uniqueSuperheros.map(name => {
           return (
-            <Dropdown.Item>{name.superhero}</Dropdown.Item>
+            <Dropdown.Item onClick={() => {sortComics(name)}}>{name.superhero}</Dropdown.Item>
           )
         })}
       </Dropdown.Menu>
@@ -88,7 +108,7 @@ const Home = (props) => {
                 <Card.Body>
                 
                 <Button variant="success"onClick={addCart}>Add To Cart</Button>
-                {showComic ? <Show setNewComic={setNewComic}comic={singleComic} setHidden={setHidden} setgiveID={setgiveID}/> : null}
+                {showComic ? <Show hero={hero} img={img} releaseDate={releaseDate} description={description} rating={rating} price={price}setNewComic={setNewComic}comic={singleComic} setHidden={setHidden} setgiveID={setgiveID}/> : null}
                 </Card.Body>
             </Card>
           </>
@@ -106,5 +126,5 @@ const Home = (props) => {
 
 export default Home
 
-//whaterver export is calling then inside of that you put in props!
+//whaterver export is calling then inside of that you put in 
 
