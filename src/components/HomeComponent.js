@@ -86,6 +86,7 @@ const Home = ({cart,setCart,showId,setShowId}) => {
   return (<>
     <div className='buttons-primary'>
     <SortedMenu uniqueSuperheros={uniqueSuperheros} sortComics={sortComics} setComicData={setComicData}/>
+   
     </div>
     <div className="home-container">
     <div className="collection">
