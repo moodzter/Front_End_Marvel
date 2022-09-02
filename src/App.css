@@ -176,3 +176,6 @@ Form.Group {
   color: white;
 }
 
+.buttons-primary{
+  margin-top: .02em;
+}

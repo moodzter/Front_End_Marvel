@@ -5,6 +5,9 @@ import Create from './components/CreateComponent'
 import Home from './components/HomeComponent'
 import ComicNav from './components/NavComponent'
 import ShowComic from './components/ShowComponent'
+<script>
+    
+</script>
 
 const App = () => {
 
@@ -13,15 +16,20 @@ const App = () => {
   let [showId, setShowId]= useState(false)
 
   const [cart, setCart]= useState(0)
+  
+  
 
 
 
 
   return (
+  
     <div className="parent">
       <div>
         <ComicNav cart={cart} setCart={setCart} setComics={setComics} showNewForm={showNewForm} setNewForm={setNewForm} showComics={showComics}/> 
       </div>
+      <iframe className="song" width="80" height="100" b src="https://open.spotify.com/embed/track/5SXsXjVJCWeJuf7FHvgBYR?utm_source=generator?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+     
       <div>
       {showNewForm ?
         <Create showComics={showComics} showNewForm={showNewForm} setComic={setComics} setNewForm={setNewForm}/> :
@@ -41,6 +49,7 @@ const App = () => {
           <div>Comic World &trade; </div>
           <div>&#9824;Mauricio Serrato & Nick Moody &#9824;</div>
       </div>
+      
     </div>
   )
 }
